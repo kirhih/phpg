@@ -1,6 +1,6 @@
 # slack
     * https://shorturl.at/stHJW
-    
+
     * https://join.slack.com/t/thep9/shared_invite/zt-22jdlbdpi-pvDvq8UyC7SiqZaS22Kh9Q
 # php
     * HTML 
@@ -34,3 +34,5 @@
                 - <address
                 - <article
                 - <section
+* image 로드 안될때
+    - ctrl+shift+r
