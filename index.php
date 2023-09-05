@@ -8,12 +8,12 @@
             /* Cascading Style Sheet 주석  -> 스크래이핑 CSS selector */
             /* 태그셀렉터 h1 태그를 찾아서 모두 red 컬러로 바꿀것*/
             h1{color: red;}
-            div{ border:3px dotted red;}
             /* 아이디셀렉터 # */
             #hello{
                 border:3px solid blue;
             }
             /* 클래스 셀렉터 . */
+            .ul{ border:3px dotted red;}
             .txtGreen{
                 color:green;
             }
@@ -36,5 +36,17 @@
         <p>안녕하세요</p>
         <p>여러분</p>
         <div id="hello" >여러분 반갑습니다.</div>
+        <div class="ul">
+            <ul><!-- 순서없는 리스트 -->
+                <li>짜장면</li>
+                <li>짬뽕</li>
+                <li>탕수육</li>
+            </ul>
+            <ol><!-- 순서있는 리스트 -->
+                <li>서울</li>
+                <li>도쿄</li>
+                <li>뉴욕</li>
+            </ol>
+        </div>
     </body>
 </html>
