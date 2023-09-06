@@ -13,7 +13,8 @@
     </head>
     <body>
         <?php
-        // function 함수명( 매개변수){코드블럭;return 변수명}
+        // def 함수명():
+        //선언 function 함수명( 매개변수){코드블럭;return 변수명}
         function makeBcol($wkan=3){
             //$wkan=3; // 나누고 싶은칸수
             $total=12; // 부트스트랩 전체컬럼수
@@ -39,6 +40,49 @@
         for($kan=2;$kan<7;$kan++){
             makeBcol($kan);
         }//1st for
+        
+        function makeHr($title="개별처리"){
+            print('<hr>');
+            print('<h1>'.$title.'</h1>');
+            print('<hr>');
+        }
+        makeHr();
+
+        makeBcol(2);
+        makeBcol(3);
+        makeBcol(4);
+        makeBcol(3);
+        makeHr('사다리만들기');
+        $kn=1;
+        function grid1($cNo=1,$addClass='redbox'){
+            $other=12-$cNo;
+            $s='<div class="row">';
+            $s.='<div class="col-lg-'.$cNo.' "><h1>.col-md-'.$cNo.'</h1></div>'."\n";
+            $s.='<div class="col-lg-'.$other.' '.$addClass.'"><h1>.col-md-'.$other.'</h1></div>'."\n";
+            $s.='</div>';
+            print($s);
+        }
+        for ($i=11;$i>0;$i--){
+            grid1($i);
+        }
+        makeHr('단순배열');
+        /* 단순 배열 */
+        $arr=array(1,2,'국어','수학');
+        for($i=0;$i<count($arr);$i++){
+            print('<li>인덱스('.$i.'):'.$arr[$i].'</li>');
+        }
+        foreach($arr as $a){
+            print('<li>'.$a.'</li>');
+        }
+        makeHr('연관배열');
+        /* 연관 배열 key - value */
+        $arr=array(1=>'국어',2=>'수학',5=>'영어','6'=>'과학');
+        for($i=0;$i<count($arr);$i++){
+            print('<li>인덱스('.$i.'):'.$arr[$i].'</li>');
+        }
+        foreach($arr as $k=>$v){
+            print('<li>'.$k.':'.$v.'</li>');
+        }
         $score=75;
         $score=10*floor($score/10);
         print($score);
