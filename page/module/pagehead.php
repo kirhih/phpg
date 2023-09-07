@@ -1,3 +1,3 @@
 <div class="page-header">
-    <h1>USER <small>사용자리스트</small></h1>
+    <h1><?=$title[0]?> <small><?=$title[1]?></small></h1>
 </div>
