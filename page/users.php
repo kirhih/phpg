@@ -15,9 +15,9 @@
     <div class="panel panel-default">
         <div class="panel-body">
         <?php
-        include('./page/module/mysql.php');
-        include('./page/module/navbar.php');
-        include('./page/module/pagehead.php');
+        include('./module/mysql.php');
+        include('./module/navbar.php');
+        include('./module/pagehead.php');
         $qry='select id,name,uid,uemail,status from users';
         $fall=getData($qry);
         //print_r($fall);
