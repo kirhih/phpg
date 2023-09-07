@@ -1,4 +1,20 @@
         <?php
+        // 처리부분
+        print_r($_POST);
+        print_r($_GET);
+        $get=$_GET;
+        $post=$_POST;
+        switch($get['do']){
+            case 'add':
+
+                break;
+            case 'edit':
+
+                break;
+            case 'delete':
+
+                break;
+        }
         $title=array('Users','사용자 리스트');
         include('./module/header.php');
         include('./module/mysql.php');
