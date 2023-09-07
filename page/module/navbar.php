@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img src="/assets/img/logo.png" alt="logo" height="40px"/>
       </a>
     </div>
@@ -16,7 +16,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">HOME <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/">HOME <span class="sr-only">(current)</span></a></li>
         <li><a href="#">SHOP</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">관리 <span class="caret"></span></a>

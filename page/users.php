@@ -35,7 +35,7 @@
             print('<td>'.$v.'</td>');
         }
         $btns='<div class="btn-group">
-        <a href="#" class="btn btn-primary">E</a>
+        <a href="/page/user.php" class="btn btn-primary">E</a>
         <button type="button" class="btn btn-warning">D</button>
       </div>';
         print('<td>'.$btns.'</td>');
