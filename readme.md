@@ -36,3 +36,27 @@
                 - <section
 * image 로드 안될때
     - ctrl+shift+r
+* DATABASE -mysql
+ - 데이터베이스 생성
+ ```SQL
+    CREATE DATABASE `myshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+```    
+* 테이블생성
+```SQL
+    CREATE TABLE `myshop`.`users` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '고유키',
+    `name` VARCHAR( 128 ) NOT NULL DEFAULT '' COMMENT '이름',
+    `uid` VARCHAR( 30 ) NOT NULL DEFAULT '' COMMENT '유저아이디',
+    `upw` VARCHAR( 256 ) NOT NULL DEFAULT '' COMMENT '패스워드',
+    `uemail` VARCHAR( 256 ) NOT NULL DEFAULT '' COMMENT '이메일',
+    `status` INT NOT NULL DEFAULT '0' COMMENT '관리상태'
+    ) ENGINE = INNODB COMMENT = '유저테이블';
+```
+* 테이블에서 컬럼추가
+```SQL
+    ALTER TABLE `users` ADD `status1` TINYINT UNSIGNED NOT NULL DEFAULT '0'
+```
+* 컬럼삭제
+```SQL
+    ALTER TABLE `users` DROP `status1` ;
+```
