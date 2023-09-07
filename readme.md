@@ -84,3 +84,7 @@
 ```SQL
  DELETE FROM `myshop`.`users` WHERE `users`.`id` =2 LIMIT 1 ;
 ```
+* 데이터베이스 삭제
+```SQL
+DROP DATABASE `myshop`;
+```
