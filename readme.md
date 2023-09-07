@@ -60,3 +60,27 @@
 ```SQL
     ALTER TABLE `users` DROP `status1` ;
 ```
+* 추가 insert
+```SQL
+    INSERT INTO `myshop`.`users` (
+    `id` ,`name` ,`uid` ,`upw` ,`uemail` ,`status`
+    )
+    VALUES (
+    NULL , '홍길동', 'hong', '1234', 'hong@.aa.com', '0'
+    );
+
+```
+* 데이터가져오기 select
+```SQL
+    SELECT id, name, uid, upw
+    FROM `users`
+    LIMIT 0 , 30
+```
+* 데이터 수정
+```SQL
+    UPDATE `myshop`.`users` SET `name` = '박달재' WHERE `users`.`id` =2 LIMIT 1 ;
+```
+* 데이터삭제
+```SQL
+ DELETE FROM `myshop`.`users` WHERE `users`.`id` =2 LIMIT 1 ;
+```
