@@ -40,9 +40,25 @@
                 //1 update를 이용한 삭제
                 $where=' where id='.$get['id'];
                 $qry='update users set status=-1 '.$where;
+                //print($qry);
+                $res=getData($qry,2);
+                break;
+            case 'cdel':
+                print($get['id'].'을 완전 삭제합니다.');
+                //1 delete를 이용한 삭제
+                $where=' where id='.$get['id'];
+                $qry='delete from users '.$where;
                 print($qry);
                 $res=getData($qry,2);
                 break;
+            case 'reco':
+                print($get['id'].'을 복구합니다.');
+                //1 update를 이용한 삭제
+                $where=' where id='.$get['id'];
+                $qry='update users set status=0 '.$where;
+                //print($qry);
+                $res=getData($qry,2);
+                break;                       
         }
         $btn='<a href="/page/user.php?do=add" class="btn btn-primary">추가하기</a>';
         $title=array('Users','사용자 리스트'.$btn);
