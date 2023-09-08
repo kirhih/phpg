@@ -1,5 +1,6 @@
 <?php
     $do=$_GET['do'];
+    $id=$_GET['id'];
     $udata=array(
         array('id','번호','hidden'),
         array('name','이름','txt'),
@@ -9,11 +10,15 @@
         array('status','상태','txt'),
     );
     $user=array();
+    
     if($do=='edit'){// 수정하기 위해 get 정보 들어옴
+        
         $title=array('User Edit','사용자 수정');
         include('./module/mysql.php');
-        $qry='select id,name,uid,upw,uemail,status from users where id=1';
-        $user=getData($qry);
+        $qry='select id,name,uid,upw,uemail,status from users where id='.$id;
+        $users=getData($qry);
+        $user=$users[0];
+        
     }else{ // 추가하기위해 get 정보 들어옴
         $title=array('User Add','사용자 추가');
         foreach($udata as $u){
