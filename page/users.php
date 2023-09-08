@@ -46,27 +46,30 @@
         include('./module/header.php');
 
         $qry='select id,name,uid,uemail,status from users';
-        $fall=getData($qry);
-        //print_r($fall);
+        $resArr=getData($qry);
+        //print_r($resArr);
         $heads=array('id','이름','아이디','이메일','상태','관리');
         print('<table class="table table-bordered">');
-
         print('<tr>');
         foreach($heads as $head){
             print('<th>'.$head.'</th>');
         }
         print('</tr>');
-
-        print('<tr>');
-        foreach($fall as $k=>$v){
-            print('<td>'.$v.'</td>');
+        $row='';// 반복문 밖에서 항상 초기화에 신경쓴다.
+        foreach($resArr as $fall){
+            $row.='<tr>';
+            foreach($fall as $k=>$v){
+                $row.='<td>'.$v.'</td>';
+            }
+            $no=$fall['id'];// 개별 고유키를 기반으로 열리는 페이지에 데이터 전송
+            $btns='<div class="btn-group">
+            <a href="/page/user.php?do=edit&id='.$no.'" class="btn btn-primary">E</a>
+            <button type="button" class="btn btn-warning">D</button>
+        </div>';
+            $row.='<td>'.$btns.'</td>';
+            $row.='</tr>';
         }
-        $btns='<div class="btn-group">
-        <a href="/page/user.php?do=edit" class="btn btn-primary">E</a>
-        <button type="button" class="btn btn-warning">D</button>
-      </div>';
-        print('<td>'.$btns.'</td>');
-        print('</tr>');
+        print($row);
         print('</table>');
         ?>
         </div>
