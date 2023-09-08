@@ -25,7 +25,8 @@
 
                 break;
         }
-        $title=array('Users','사용자 리스트');
+        $btn='<a href="/page/user.php?do=add" class="btn btn-primary">추가하기</a>';
+        $title=array('Users','사용자 리스트'.$btn);
         include('./module/header.php');
 
         $qry='select id,name,uid,uemail,status from users';
@@ -45,7 +46,7 @@
             print('<td>'.$v.'</td>');
         }
         $btns='<div class="btn-group">
-        <a href="/page/user.php" class="btn btn-primary">E</a>
+        <a href="/page/user.php?do=edit" class="btn btn-primary">E</a>
         <button type="button" class="btn btn-warning">D</button>
       </div>';
         print('<td>'.$btns.'</td>');
