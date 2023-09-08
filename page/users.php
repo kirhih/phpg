@@ -36,14 +36,22 @@
                 $res=getData($qry,2);
                 break;
             case 'delete':
-
+                print($get['id'].'을 삭제합니다.');
+                //1 update를 이용한 삭제
+                $where=' where id='.$get['id'];
+                $qry='update users set status=-1 '.$where;
+                print($qry);
+                $res=getData($qry,2);
                 break;
         }
         $btn='<a href="/page/user.php?do=add" class="btn btn-primary">추가하기</a>';
         $title=array('Users','사용자 리스트'.$btn);
         include('./module/header.php');
 
-        $qry='select id,name,uid,uemail,status from users';
+        // update를 이용한 삭제일경우
+        //$qry='select id,name,uid,uemail,status from users where status>=0';
+        // 삭제된 데이터도 볼경우
+        $qry='select id,name,uid,uemail,status from users ';
         $resArr=getData($qry);
         //print_r($resArr);
         $heads=array('id','이름','아이디','이메일','상태','관리');
@@ -60,11 +68,15 @@
                 $row.='<td>'.$v.'</td>';
             }
             $no=$fall['id'];// 개별 고유키를 기반으로 열리는 페이지에 데이터 전송
-            $btns='<div class="btn-group">
+            $btns='
             <a href="/page/user.php?do=edit&id='.$no.'" class="btn btn-primary">E</a>
-            <button type="button" class="btn btn-warning">D</button>
-        </div>';
-            $row.='<td>'.$btns.'</td>';
+            <a href="/page/users.php?do=delete&id='.$no.'" class="btn btn-warning">D</a>';
+            if($fall['status']<0){// 삭제된 데이터의 경우
+                $btns.='
+                <a href="/page/users.php?do=cdel&id='.$no.'" class="btn btn-danger">완전삭제</a>
+                <a href="/page/users.php?do=reco&id='.$no.'" class="btn btn-info">복구</a>';
+            }
+            $row.='<td><div class="btn-group">'.$btns.'</div></td>';
             $row.='</tr>';
         }
         print($row);
