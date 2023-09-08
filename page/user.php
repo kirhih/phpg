@@ -9,12 +9,12 @@
         array('status','상태','txt'),
     );
     $user=array();
-    if($do=='edit'){
+    if($do=='edit'){// 수정하기 위해 get 정보 들어옴
         $title=array('User Edit','사용자 수정');
         include('./module/mysql.php');
         $qry='select id,name,uid,upw,uemail,status from users where id=1';
         $user=getData($qry);
-    }else{
+    }else{ // 추가하기위해 get 정보 들어옴
         $title=array('User Add','사용자 추가');
         foreach($udata as $u){
             $user[$u[0]]='';
@@ -22,9 +22,8 @@
     }
     include('./module/header.php');
     //print_r($user);
-
 ?>
-<form action="/page/users.php?do=edit" method="POST">
+<form action="/page/users.php?do=<?=$do?>" method="POST">
     <?php foreach($udata as $u){
             $txt='<div class="form-group row">';
             if($u[2]!='hidden'){

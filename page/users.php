@@ -6,10 +6,26 @@
         $post=$_POST;
         switch($get['do']){
             case 'add':
-
+                //print_r($post);
+                unset($post['id']);// 자동완성컬럼이므로 삭제
+                print('추가하는중...');
+                if(empty($post['name'])){// 필수항목인 사람이름이 있는지 체크
+                    print('사람 이름이 없습니다');
+                }else{
+                    // insert into 테이블명 (컬럼들ks) values (값들vs)
+                    $ks='';
+                    $vs='';
+                    foreach($post as $k=>$v){
+                        $ks.=$k.',';
+                        $vs.='"'.$v.'",';
+                    }
+                    $qry='insert into users ('.substr($ks,0,-1).') values('.substr($vs,0,-1).')';
+                    print($qry);
+                    $res=getData($qry,2);
+                }
                 break;
             case 'edit':
-                //print_r($post);
+                //
                 // update 테이블명 set 컬럼명=값,...where 조건절
                 $qbody='';
                 foreach($post as $k=>$v){
