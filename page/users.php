@@ -1,7 +1,7 @@
         <?php
         // 처리부분
-        print_r($_POST);
-        print_r($_GET);
+        include('./module/mysql.php');
+
         $get=$_GET;
         $post=$_POST;
         switch($get['do']){
@@ -9,7 +9,17 @@
 
                 break;
             case 'edit':
-
+                //print_r($post);
+                // update 테이블명 set 컬럼명=값,...where 조건절
+                $qbody='';
+                foreach($post as $k=>$v){
+                    $qbody.=$k."='".$v."',";
+                }
+                $where=' where id='.$post['id'];
+                $qry='update users set '.substr($qbody,0,-1).$where;
+                //print($qry);
+                $res=getData($qry,2);
+                print($res);
                 break;
             case 'delete':
 
@@ -17,7 +27,7 @@
         }
         $title=array('Users','사용자 리스트');
         include('./module/header.php');
-        include('./module/mysql.php');
+
         $qry='select id,name,uid,uemail,status from users';
         $fall=getData($qry);
         //print_r($fall);
