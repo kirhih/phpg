@@ -13,10 +13,14 @@ function getConn(){
     mysqli_query($conn,'SET NAMES utf8');
     return $conn;
 }
-function getData($qry='select * from users'){
+function getData($qry='select * from users',$type=1){
     $conn=getConn();
     $res=mysqli_query($conn,$qry);
-    $data=mysqli_fetch_assoc($res);// 연관배열로
+    if($type==1){// select 라면
+        $data=mysqli_fetch_assoc($res);// 연관배열로
+    }else{
+        $data=$res;
+    }
     return $data;
 }
 ?>
