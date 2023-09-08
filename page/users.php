@@ -33,9 +33,7 @@
                 }
                 $where=' where id='.$post['id'];
                 $qry='update users set '.substr($qbody,0,-1).$where;
-                //print($qry);
                 $res=getData($qry,2);
-                print($res);
                 break;
             case 'delete':
 
