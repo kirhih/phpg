@@ -10,6 +10,9 @@ import seaborn as sns   # 그래프 고도화
 print("init...")
 #%%
 from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
 data=load_breast_cancer()
 X=data['data']
 Y=data['target']
@@ -28,7 +31,6 @@ df.info()
 #기초시각화
 plt.hist(Y)
 Y
-
 #%%
 plt.plot(df['mean radius'],'.')
 #%%
@@ -37,14 +39,36 @@ sns.scatterplot(df.iloc[:,:3])
 tdf=df.copy()
 tdf['tgt']=Y
 sns.pairplot(tdf.iloc[:,-5:],hue='tgt')
+
+#%%
+#데이터 전처리
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,shuffle=True,random_state=1,stratify=Y)
+print(X_train.shape,Y_train.shape)
+print(X_test.shape,Y_test.shape)
+plt.hist(Y_train)
+plt.hist(Y_test)
 ## 앙상블 모델 Random Forest
 #%%
 from sklearn.ensemble import RandomForestClassifier as RF
-rf=RF()
-rf.fit(X_train,Y_train)
-pred=dt.predict(X_test)
-print(pred)
-print(Y_test)
-acc=accuracy_score(pred,Y_test)
-print('RF[] acc:',acc)
+# 하이퍼 파라미터 튜닝
+def makeRF(i,j):
+    rf=RF(max_depth=j,max_leaf_nodes=i)
+    rf.fit(X_train,Y_train)
+    pred=rf.predict(X_test)
+    acc=accuracy_score(pred,Y_test)
+    print('RF[',i,',',j,'] acc:',acc)
+    return acc
+accs=[]
+beforeACC=0
+bestACC=[]
+for i in range(2,10):
+    for j in range(2,10):
+        acc=makeRF(i,j)
+        if(acc>beforeACC):
+            bestACC=[i,j,acc]
+        beforeACC=acc
+        accs.append(acc)# 리스트에 데이터 추가
+# %%
+print(bestACC)
+plt.plot(accs)
 # %%
