@@ -44,11 +44,59 @@ print(X_train.shape,X_test.shape)
 print(Y_train.shape,Y_test.shape)
 
 #%%
-knn3=KNeighborsClassifier(n_neighbors=3) # 모델 지정하기
-knn3.fit(X_train,Y_train) # 학습시키기
-pred=knn3.predict(X_test) #시험보기
-print(pred) # 시험본답 출력
-print(Y_test) # 실제답
+# 하이퍼 파라미터 튜닝 KNN
+for i in range(3,20,2): #range(시작,종료,스텝)
+    print('KNN:',i)
+    knn3=KNeighborsClassifier(n_neighbors=i) # 모델 지정하기
+    knn3.fit(X_train,Y_train) # 학습시키기
+    pred=knn3.predict(X_test) #시험보기
+    print(pred) # 시험본답 출력
+    print(Y_test) # 실제답
+    acc=accuracy_score(pred,Y_test)
+    print("점수[",i,"]:",acc)
+
+# %%
+# SVM
+from sklearn.svm import SVC
+for i in range(1,10):
+    svc=SVC(C=i)
+    svc.fit(X_train,Y_train)
+    pred=svc.predict(X_test)
+    print(pred)
+    print(Y_test)
+    acc=accuracy_score(pred,Y_test)
+    print('SVM[',i,'] acc:',acc)
+#%%
+# 디시전트리
+from sklearn.tree import DecisionTreeClassifier as DT
+for j in range(2,10):
+    for i in range(2,10):
+        dt=DT(max_depth=i,min_samples_leaf=j)
+        dt.fit(X_train,Y_train)
+        pred=dt.predict(X_test)
+        print(pred)
+        print(Y_test)
+        acc=accuracy_score(pred,Y_test)
+        print('DT[',i,',',j,'] acc:',acc)
+#%%
+from sklearn.datasets import load_breast_cancer
+data=load_breast_cancer()
+data['data'].shape
+
+## 앙상블 모델 Random Forest
+#%%
+from sklearn.ensemble import RandomForestClassifier as RF
+rf=RF()
+rf.fit(X_train,Y_train)
+pred=dt.predict(X_test)
+print(pred)
+print(Y_test)
 acc=accuracy_score(pred,Y_test)
-print("점수",acc)
+print('RF[] acc:',acc)
+
+
+    
+
+
+
 # %%
