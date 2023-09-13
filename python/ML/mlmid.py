@@ -72,3 +72,71 @@ for i in range(2,10):
 print(bestACC)
 plt.plot(accs)
 # %%
+from sklearn.tree import DecisionTreeClassifier as DT
+# DT 하이퍼 파라미터 튜닝
+def makeDT(i,j):
+    rf=DT(max_depth=j,max_leaf_nodes=i)
+    rf.fit(X_train,Y_train)
+    pred=rf.predict(X_test)
+    acc=accuracy_score(pred,Y_test)
+    print('DT[',i,',',j,'] acc:',acc)
+    return acc
+accs=[]
+beforeACC=0
+bestACC=[]
+for i in range(2,10): 
+    for j in range(2,10):
+        acc=makeDT(i,j)
+        if(acc>beforeACC):
+            bestACC=[i,j,acc]
+        beforeACC=acc
+        accs.append(acc)# 리스트에 데이터 추가
+# %%
+print(bestACC)
+plt.plot(accs)
+# %%
+from sklearn.ensemble import GradientBoostingClassifier as GB
+# 그래디언트 부스팅 - 무겁다 
+def makeGB(i,j):
+    rf=GB(min_samples_split=j,n_estimators=i*50)
+    rf.fit(X_train,Y_train)
+    pred=rf.predict(X_test)
+    acc=accuracy_score(pred,Y_test)
+    print('GB[',i,',',j,'] acc:',acc)
+    return acc
+accs=[]
+beforeACC=0
+bestACC=[]
+for i in range(1,10): 
+    for j in range(2,10):
+        acc=makeGB(i,j)
+        if(acc>beforeACC):
+            bestACC=[i,j,acc]
+        beforeACC=acc
+        accs.append(acc)# 리스트에 데이터 추가
+# %%
+print(bestACC)
+plt.plot(accs)
+# %%
+from sklearn.ensemble import AdaBoostClassifier as AB
+# 그래디언트 부스팅 - 무겁다 
+def makeAB(i):
+    rf=AB(n_estimators=i*20)
+    rf.fit(X_train,Y_train)
+    pred=rf.predict(X_test)
+    acc=accuracy_score(pred,Y_test)
+    print('AB[',i,',',j,'] acc:',acc)
+    return acc
+accs=[]
+beforeACC=0
+bestACC=[]
+for i in range(1,10): 
+    acc=makeAB(i)
+    if(acc>beforeACC):
+        bestACC=[i,acc]
+    beforeACC=acc
+    accs.append(acc)# 리스트에 데이터 추가
+# %%
+print(bestACC)
+plt.plot(accs)
+# %%
