@@ -38,6 +38,7 @@ print(y_train[0],Y_train[0])
 # 모델 결정 DNN
 layers=[
     tf.keras.layers.Flatten(input_shape=(32, 32, 3)),
+    tf.keras.layers.Dense(1024,activation='relu'),
     tf.keras.layers.Dense(128,activation='relu'),
     tf.keras.layers.Dense(64,activation='relu'),
     tf.keras.layers.Dense(10,activation='softmax')
@@ -45,15 +46,29 @@ layers=[
 model=tf.keras.models.Sequential(layers)
 model.summary()
 #%%
+es=tf.keras.callbacks.EarlyStopping(monitor='val_loss',
+                                  min_delta=0.001, 
+                                  patience=10, 
+                                  verbose=1, 
+                                  mode='auto', 
+                                  baseline=None, 
+                                  restore_best_weights=False)
+#%%
 # 최적화함수  결정 optimizer=
 # 손실(에러)결정 loss=
 model.compile(optimizer='adam',
               loss='categorical_crossentropy',
-              metrics=['accuracy'])
+              metrics=['accuracy'],
+              )
 
 # %%
 # 학습하기
-model.fit(x_train,y_train,epochs=10)
+hist=model.fit(x_train,
+               y_train,
+               epochs=100,
+               batch_size=1000,
+               verbose=1,
+               callbacks=[es])
 # %%
 # 시험보기
 loss,acc=model.evaluate(x_test,y_test)
