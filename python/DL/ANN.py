@@ -28,11 +28,9 @@ print('최대:',X_train[0].max(),'최소:',X_train[0].min())
 print(x_train[0].max())
 plt.hist(y_train)
 # %%
-# 모델 결정 DNN
+# 모델 결정 ANN
 layers=[
     tf.keras.layers.Flatten(input_shape=(28,28)),
-    tf.keras.layers.Dense(128,activation='relu'),
-    tf.keras.layers.Dense(64,activation='relu'),
     tf.keras.layers.Dense(10,activation='softmax')
 ]
 model=tf.keras.models.Sequential(layers)
@@ -40,7 +38,7 @@ model.summary()
 #%%
 # 최적화함수  결정 optimizer=
 # 손실(에러)결정 loss=
-model.compile(optimizer='sgd',
+model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
