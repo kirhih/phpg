@@ -101,7 +101,6 @@ import numpy as np
 simtxt=np.where(csimv[2]>0.1)
 # %%
 for sim in simtxt[0]:
-    
     print(np.round(csimv[2][sim],2),':',lucks[sim])
     print('-'*30)
 # %%
