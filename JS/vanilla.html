@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+        </style>
+        <script>
+            // 스크립트언어 실행 순서대로 일을함
+            // 단열주석
+            /* 다열주석 */
+            
+            var a=1; /* 변수 (과거의 변수선언 방법): 재 정의시 문제 스코프문제*/
+            let b=2; /* 변수 : 한번 선언하면 재선언 불가{}별로 가능 수정은 가능*/
+            const c=3; /* 상수 : 재선언및 수정이 안됨 */ 
+            d=4; /* va r의 묵시적 인정 */
+            // alert(a);// 경고를 위한 출력
+            // alert(b);
+            // alert(c);
+            // alert(d);
+            //print(a);// 인쇄명령어
+            document.write('<h1>'+a+'</h1>');// 웹상에 표시하기(DOM 객체 생성)
+            console.log('변수테스트:',a)// python 의 print 개념
+            b="안녕하세요"
+            console.log('문자열 형바꿈:',b);
+            b=1.12345;
+            console.log('숫자 형바꿈:',b);
+            b=true; b=false;// 한줄에 여러명령어 쓸때 반드시 세미콜론 필요
+            console.log('불린 형바꿈:',b);
+            // 동적 웹 콘텐츠 생성
+            let tgt=document.getElementById("div1");
+            console.log('target:',tgt);
+            tgt.innerHTML='<label>동적콘텐츠 front</label>';
+        </script>
+    </head>
+    <body>
+        <h1>JStest</h1>
+        <div id="div1">
+        </div>
+        <script>
+            // 동적 웹 콘텐츠 생성2
+            tgt=document.getElementById("div1");
+            console.log('target:',tgt);
+            tgt.innerHTML='<label>동적콘텐츠 back</label>';
+            tgt.innerHTML+=Date();// 문자열 합치기 축약
+        </script>
+    </body>
+
+</html>
