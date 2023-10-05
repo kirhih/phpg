@@ -22,7 +22,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">관리 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/page/users.php">사용자</a></li>
-            <li><a href="#">쿠폰</a></li>
+            <li><a href="/page/coupon.php">쿠폰</a></li>
             <li><a href="#">회사</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">장바구니</a></li>

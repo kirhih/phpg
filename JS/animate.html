@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+            .line{border:2px solid greenyellow}
+            .bgaqua{background-color: aquamarine;}
+            .reverse{transform: scaleX(-1);}
+            #car{
+                position: absolute;
+                top:180px;
+                left:50px;
+                width:300px;
+            }
+            #man{
+                position: absolute;
+                top:100px;/*180*/
+                left:250px;/*180*/
+                width:40px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function goCar(){
+                $('#btn5').addClass('line');
+                $('#btn4').removeClass('line');// 직접 자신선택
+                $('#car').animate({left:'+=400'},1000,function(){
+                    console.log('도착'); // console log
+                });
+            }
+
+            function backCar(){
+                $(this).removeClass('line');// 자신을 선택
+                        $('#btn4').addClass('line');
+                        $('#car').animate({left:'-=400'},1000,function(){
+                        console.log('돌아옴');
+                        $('#man').show();
+                })
+            }
+        $(document).ready(// 페이지가 로드된 다음에 JS 실행할것
+            function(){
+                $('#div3').html("선행JS");// 내부 html 바꾸기
+                $('#btn3').click(function(){
+                    //alert('btn3 click');
+                    $('#div3').html("버튼클릭되어서 내용 바뀜");
+                })// click event
+
+                $('#btn4').click(function(){
+                    //goCar();
+                    $('#man').animate({left:'170',top:'200'},1000,function(){
+                        $(this).hide();// 사람 사라지기
+                        goCar();
+                    console.log('사람도착'); // console log
+                });
+                })//btn4
+
+                $('#btn5').click(function(){
+                    backCar();
+                })
+            }
+        )
+        </script>
+    </head>
+    <body>
+        <h1>JStest</h1>
+        <button id="btn3">div3에 보여줘</button>
+        <button id="btn4">자동차 출발해!</button>
+        <button id="btn5">자동차 돌아와!</button>
+        <div id="div1">
+        </div>
+        <div id="div2">
+        </div>
+        <div id="div3">
+        </div>
+        <div >
+            <img id="man" src="manfront.png"/>
+        </div>
+        <div >
+            <img id="car" class="reverse" src="car.png"/>
+        </div>
+        <script>
+            let divs=document.getElementById('div2').innerHTML="안녕하세요"
+            $('#div1').html('제이쿼리안녕');
+            //alert($('#div1'))
+        </script>
+    </body>
+
+</html>
