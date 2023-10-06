@@ -24,7 +24,7 @@ $data=date("YYYYMMDDHHiiss");// 시시각각 변하는 md5용
 if ($_POST['hash']!=md5('아시아경제')){ // md5기반의 단방향 암호화 기술을 사용 restful 사이트를 보호
     echo '<meta charset="UTF-8">';
     $ip = getRealClientIp();
-    echo $id.' 꺼져 다시오면 혼난다'; 
+    echo $ip.' 꺼져 다시오면 혼난다'; 
 }else{
     unset($_POST['hash']);// 보안용 코드는 지워버리자
     $txt='<tr><td></td>';
