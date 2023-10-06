@@ -53,9 +53,10 @@
                     <input name="till" id="till"  value="2023-01-01">
                     <?
                     // 단방향 암호화 기술 md5
+                    $data=date("YYYYMMDDHHiiss");
                     $hashcode=md5('아시아경제');
                     ?>
-                    <input type="hidden" name="hash" id="hash"  value="<?=$hashcode?>">
+                    <input type="text" name="hash" id="hash"  value="<?=$hashcode?>">
                 </li>
             </ul>
         </form>
